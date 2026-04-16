@@ -1,0 +1,97 @@
+[gd_resource type="SpriteFrames" load_steps=25 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_01.png" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_02.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_03.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_04.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_05.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_06.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_07.png" id="7"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_08.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_09.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_10.png" id="10"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_11.png" id="11"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_12.png" id="12"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_13.png" id="13"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_14.png" id="14"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_15.png" id="15"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_16.png" id="16"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_17.png" id="17"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_18.png" id="18"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_19.png" id="19"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_20.png" id="20"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_21.png" id="21"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_22.png" id="22"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_23.png" id="23"]
+[ext_resource type="Texture2D" path="res://assets/sokoban/PNG/Default size/Player/player_24.png" id="24"]
+
+[resource]
+animations = [{
+"frames": [{"duration": 1.0, "texture": ExtResource("1")}],
+"loop": true,
+"name": &"idle_down",
+"speed": 4.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("7")}],
+"loop": true,
+"name": &"idle_left",
+"speed": 4.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("13")}],
+"loop": true,
+"name": &"idle_right",
+"speed": 4.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("19")}],
+"loop": true,
+"name": &"idle_up",
+"speed": 4.0
+}, {
+"frames": [
+{"duration": 1.0, "texture": ExtResource("1")},
+{"duration": 1.0, "texture": ExtResource("2")},
+{"duration": 1.0, "texture": ExtResource("3")},
+{"duration": 1.0, "texture": ExtResource("4")},
+{"duration": 1.0, "texture": ExtResource("5")},
+{"duration": 1.0, "texture": ExtResource("6")}
+],
+"loop": true,
+"name": &"walk_down",
+"speed": 10.0
+}, {
+"frames": [
+{"duration": 1.0, "texture": ExtResource("7")},
+{"duration": 1.0, "texture": ExtResource("8")},
+{"duration": 1.0, "texture": ExtResource("9")},
+{"duration": 1.0, "texture": ExtResource("10")},
+{"duration": 1.0, "texture": ExtResource("11")},
+{"duration": 1.0, "texture": ExtResource("12")}
+],
+"loop": true,
+"name": &"walk_left",
+"speed": 10.0
+}, {
+"frames": [
+{"duration": 1.0, "texture": ExtResource("13")},
+{"duration": 1.0, "texture": ExtResource("14")},
+{"duration": 1.0, "texture": ExtResource("15")},
+{"duration": 1.0, "texture": ExtResource("16")},
+{"duration": 1.0, "texture": ExtResource("17")},
+{"duration": 1.0, "texture": ExtResource("18")}
+],
+"loop": true,
+"name": &"walk_right",
+"speed": 10.0
+}, {
+"frames": [
+{"duration": 1.0, "texture": ExtResource("19")},
+{"duration": 1.0, "texture": ExtResource("20")},
+{"duration": 1.0, "texture": ExtResource("21")},
+{"duration": 1.0, "texture": ExtResource("22")},
+{"duration": 1.0, "texture": ExtResource("23")},
+{"duration": 1.0, "texture": ExtResource("24")}
+],
+"loop": true,
+"name": &"walk_up",
+"speed": 10.0
+}]

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const TILE_SIZE: int = 64
 const MOVE_SPEED: float = 200.0
+const PLAYER_DEATH_EFFECT: PackedScene = preload("res://scenes/effects/player_death_effect.tscn")
 
 var grid_pos: Vector2i = Vector2i.ZERO
 var target_pos: Vector2 = Vector2.ZERO
@@ -72,7 +73,7 @@ func try_move(direction: Vector2i, dir_name: String):
 			if try_push_box(collider, direction):
 				execute_move(direction, dir_name)
 			return
-		elif collider and (collider.is_in_group("wall") or collider.is_in_group("door")):
+		elif collider and (collider.is_in_group("wall") or collider.is_in_group("door") or collider is TileMapLayer):
 			return
 	
 	execute_move(direction, dir_name)
@@ -103,7 +104,13 @@ func update_animation(state: String):
 		sprite.play(state)
 
 func die():
+	if not is_alive:
+		return
 	is_alive = false
+	if PLAYER_DEATH_EFFECT:
+		var effect := PLAYER_DEATH_EFFECT.instantiate()
+		effect.global_position = global_position
+		get_tree().current_scene.add_child(effect)
 	visible = false
 
 func _on_area_entered(area):
