@@ -1,0 +1,48 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_manager.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/objects/exit.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/objects/button.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/objects/door.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/ui/mobile_controls.tscn" id="6"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(64, 64)
+
+[node name="Level4" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Floor" type="TileMapLayer" parent="."]
+
+[node name="Walls" type="TileMapLayer" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2")]
+position = Vector2(64, 384)
+
+[node name="Exit" parent="." instance=ExtResource("3")]
+position = Vector2(448, 64)
+
+[node name="DoorA" parent="." instance=ExtResource("5")]
+position = Vector2(256, 256)
+
+[node name="DoorB" parent="." instance=ExtResource("5")]
+position = Vector2(320, 256)
+
+[node name="ButtonA" parent="." instance=ExtResource("4")]
+position = Vector2(64, 128)
+linked_door_path = NodePath("../DoorA")
+
+[node name="ButtonB" parent="." instance=ExtResource("4")]
+position = Vector2(128, 128)
+linked_door_path = NodePath("../DoorB")
+
+[node name="Wall1" type="StaticBody2D" parent="." groups=["wall"]]
+position = Vector2(192, 320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
+shape = SubResource("1")
+
+[node name="Echoes" type="Node2D" parent="."]
+
+[node name="MobileControls" parent="." instance=ExtResource("6")]
