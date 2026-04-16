@@ -18,7 +18,6 @@ signal player_moved(direction: String)
 signal player_reset(history: Array)
 
 func _ready():
-	add_to_group("player")
 	grid_pos = Vector2i(position / TILE_SIZE)
 	target_pos = position
 	update_animation("idle")

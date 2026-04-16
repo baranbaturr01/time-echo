@@ -2,7 +2,7 @@ extends Area2D
 
 @export var linked_door_path: NodePath
 
-var _pressing_bodies: Dictionary = {}
+var _pressing_bodies_by_id: Dictionary = {}
 
 @onready var _linked_door: Node = get_node_or_null(linked_door_path)
 
@@ -16,24 +16,27 @@ func _is_pressing_body(body: Node) -> bool:
 func _on_body_entered(body: Node) -> void:
     if not _is_pressing_body(body):
         return
-    _pressing_bodies[body.get_instance_id()] = body
+    _pressing_bodies_by_id[body.get_instance_id()] = body
     _update_door_state()
 
 func _on_body_exited(body: Node) -> void:
-    if _pressing_bodies.has(body.get_instance_id()):
-        _pressing_bodies.erase(body.get_instance_id())
-
-    for overlap in get_overlapping_bodies():
-        if _is_pressing_body(overlap):
-            _pressing_bodies[overlap.get_instance_id()] = overlap
+    if _pressing_bodies_by_id.has(body.get_instance_id()):
+        _pressing_bodies_by_id.erase(body.get_instance_id())
 
     _update_door_state()
 
 func _has_valid_pressers() -> bool:
-    for body in _pressing_bodies.values():
-        if is_instance_valid(body):
-            return true
-    return false
+    var deduped: Dictionary = {}
+    for body in _pressing_bodies_by_id.values():
+        if is_instance_valid(body) and _is_pressing_body(body):
+            deduped[body.get_instance_id()] = body
+
+    if deduped.is_empty():
+        for overlap in get_overlapping_bodies():
+            if _is_pressing_body(overlap):
+                deduped[overlap.get_instance_id()] = overlap
+    _pressing_bodies_by_id = deduped
+    return not _pressing_bodies_by_id.is_empty()
 
 func _update_door_state() -> void:
     if _linked_door == null:

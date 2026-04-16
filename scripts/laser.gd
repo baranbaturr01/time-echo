@@ -18,7 +18,7 @@ func _update_beam() -> void:
         end_point = to_local(ray.get_collision_point())
         var collider := ray.get_collider()
         if collider and (collider.is_in_group("player") or collider.is_in_group("echo")):
-            if collider.has_method("die"):
+            if collider.has_method("die") and collider.visible:
                 collider.die()
 
     beam.clear_points()

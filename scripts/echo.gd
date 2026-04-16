@@ -16,7 +16,6 @@ var is_alive: bool = true
 @onready var hurtbox: Area2D = $Hurtbox
 
 func _ready() -> void:
-    add_to_group("echo")
     modulate = Color(1, 1, 1, 0.5)
     target_pos = position
     update_animation("idle")
