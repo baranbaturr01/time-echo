@@ -5,7 +5,7 @@
 [application]
 
 config/name="Time Echo"
-config/description="A grid-based puzzle game where you collaborate with your past selves to solve levels."
+config/description="A grid-based puzzle game where you collaborate with your past selves to solve puzzles."
 run/main_scene="res://scenes/levels/level_1.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
