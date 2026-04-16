@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/mobile_controls.gd" id="1_kxb7h"]
+[ext_resource type="Texture2D" path="res://assets/buttons/PNG/Blue/Default/button_square_depth_gloss.png" id="2_blue_button"]
+[ext_resource type="Texture2D" path="res://assets/buttons/PNG/Blue/Default/button_square_depth_flat.png" id="3_blue_button_pressed"]
+[ext_resource type="Texture2D" path="res://assets/buttons/PNG/Blue/Default/arrow_basic_n.png" id="4_arrow_up"]
+[ext_resource type="Texture2D" path="res://assets/buttons/PNG/Blue/Default/arrow_basic_s.png" id="5_arrow_down"]
+[ext_resource type="Texture2D" path="res://assets/buttons/PNG/Blue/Default/arrow_basic_w.png" id="6_arrow_left"]
+[ext_resource type="Texture2D" path="res://assets/buttons/PNG/Blue/Default/arrow_basic_e.png" id="7_arrow_right"]
+[ext_resource type="Texture2D" path="res://assets/buttons/PNG/Red/Default/button_rectangle_depth_gloss.png" id="8_reset_button"]
+[ext_resource type="Texture2D" path="res://assets/buttons/PNG/Red/Default/button_rectangle_depth_flat.png" id="9_reset_button_pressed"]
+[ext_resource type="FontFile" path="res://assets/buttons/Font/Kenney Future.ttf" id="10_font"]
 
 [node name="MobileControls" type="CanvasLayer"]
 script = ExtResource("1_kxb7h")
@@ -15,41 +24,122 @@ grow_vertical = 2
 [node name="LevelLabel" type="Label" parent="Panel"]
 offset_left = 16.0
 offset_top = 16.0
-offset_right = 220.0
+offset_right = 250.0
 offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("10_font")
+theme_override_font_sizes/font_size = 24
 text = "Level 1"
 
-[node name="UpButton" type="Button" parent="Panel"]
+[node name="UpButton" type="TextureButton" parent="Panel"]
 offset_left = 560.0
 offset_top = 900.0
-offset_right = 640.0
-offset_bottom = 980.0
-text = "↑"
+offset_right = 656.0
+offset_bottom = 996.0
+texture_normal = ExtResource("2_blue_button")
+texture_pressed = ExtResource("3_blue_button_pressed")
+ignore_texture_size = true
 
-[node name="DownButton" type="Button" parent="Panel"]
+[node name="Icon" type="TextureRect" parent="Panel/UpButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("4_arrow_up")
+
+[node name="DownButton" type="TextureButton" parent="Panel"]
 offset_left = 560.0
 offset_top = 1060.0
-offset_right = 640.0
-offset_bottom = 1140.0
-text = "↓"
+offset_right = 656.0
+offset_bottom = 1156.0
+texture_normal = ExtResource("2_blue_button")
+texture_pressed = ExtResource("3_blue_button_pressed")
+ignore_texture_size = true
 
-[node name="LeftButton" type="Button" parent="Panel"]
-offset_left = 480.0
+[node name="Icon" type="TextureRect" parent="Panel/DownButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("5_arrow_down")
+
+[node name="LeftButton" type="TextureButton" parent="Panel"]
+offset_left = 472.0
 offset_top = 980.0
-offset_right = 560.0
-offset_bottom = 1060.0
-text = "←"
+offset_right = 568.0
+offset_bottom = 1076.0
+texture_normal = ExtResource("2_blue_button")
+texture_pressed = ExtResource("3_blue_button_pressed")
+ignore_texture_size = true
 
-[node name="RightButton" type="Button" parent="Panel"]
-offset_left = 640.0
+[node name="Icon" type="TextureRect" parent="Panel/LeftButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("6_arrow_left")
+
+[node name="RightButton" type="TextureButton" parent="Panel"]
+offset_left = 648.0
 offset_top = 980.0
-offset_right = 720.0
-offset_bottom = 1060.0
-text = "→"
+offset_right = 744.0
+offset_bottom = 1076.0
+texture_normal = ExtResource("2_blue_button")
+texture_pressed = ExtResource("3_blue_button_pressed")
+ignore_texture_size = true
 
-[node name="ResetButton" type="Button" parent="Panel"]
+[node name="Icon" type="TextureRect" parent="Panel/RightButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("7_arrow_right")
+
+[node name="ResetButton" type="TextureButton" parent="Panel"]
 offset_left = 24.0
-offset_top = 1180.0
-offset_right = 184.0
+offset_top = 1172.0
+offset_right = 216.0
 offset_bottom = 1248.0
+texture_normal = ExtResource("8_reset_button")
+texture_pressed = ExtResource("9_reset_button_pressed")
+ignore_texture_size = true
+
+[node name="Label" type="Label" parent="Panel/ResetButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.5
+offset_top = -16.0
+offset_right = 45.5
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("10_font")
+theme_override_font_sizes/font_size = 24
 text = "Reset"
+horizontal_alignment = 1
+vertical_alignment = 1

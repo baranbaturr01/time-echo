@@ -1,0 +1,18 @@
+[gd_resource type="TileSet" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sokoban/Tilesheet/sokoban_tilesheet.png" id="1_sheet"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sokoban"]
+texture = ExtResource("1_sheet")
+texture_region_size = Vector2i(64, 64)
+12:6/0 = 0
+7:7/0 = 0
+7:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:7/0/physics_layer_0/angular_velocity = 0.0
+7:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[resource]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_sokoban")

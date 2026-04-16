@@ -1,10 +1,10 @@
 extends CanvasLayer
 
-@onready var up_button: Button = $Panel/UpButton
-@onready var down_button: Button = $Panel/DownButton
-@onready var left_button: Button = $Panel/LeftButton
-@onready var right_button: Button = $Panel/RightButton
-@onready var reset_button: Button = $Panel/ResetButton
+@onready var up_button: BaseButton = $Panel/UpButton
+@onready var down_button: BaseButton = $Panel/DownButton
+@onready var left_button: BaseButton = $Panel/LeftButton
+@onready var right_button: BaseButton = $Panel/RightButton
+@onready var reset_button: BaseButton = $Panel/ResetButton
 @onready var level_label: Label = $Panel/LevelLabel
 
 func _ready() -> void:
@@ -21,7 +21,7 @@ func _exit_tree() -> void:
     if GameManager.level_completed.is_connected(_update_level_label):
         GameManager.level_completed.disconnect(_update_level_label)
 
-func _bind_direction_button(button: Button, action_name: String) -> void:
+func _bind_direction_button(button: BaseButton, action_name: String) -> void:
     button.button_down.connect(func(): Input.action_press(action_name))
     button.button_up.connect(func(): Input.action_release(action_name))
 
