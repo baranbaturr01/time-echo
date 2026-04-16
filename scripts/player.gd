@@ -73,7 +73,7 @@ func try_move(direction: Vector2i, dir_name: String):
 			if try_push_box(collider, direction):
 				execute_move(direction, dir_name)
 			return
-		elif collider and (collider.is_in_group("wall") or collider.is_in_group("door") or collider is TileMapLayer):
+		elif _is_blocking_collider(collider):
 			return
 	
 	execute_move(direction, dir_name)
@@ -88,6 +88,15 @@ func execute_move(direction: Vector2i, dir_name: String):
 func try_push_box(box: Node2D, direction: Vector2i) -> bool:
 	if box.has_method("try_push"):
 		return box.try_push(direction)
+	return false
+
+func _is_blocking_collider(collider: Variant) -> bool:
+	if collider == null:
+		return false
+	if collider is TileMapLayer:
+		return true
+	if collider is Node:
+		return collider.is_in_group("wall") or collider.is_in_group("door")
 	return false
 
 func do_reset():
