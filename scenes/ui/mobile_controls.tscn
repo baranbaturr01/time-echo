@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/mobile_controls.gd" id="1_kxb7h"]
+
+[node name="MobileControls" type="CanvasLayer"]
+script = ExtResource("1_kxb7h")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelLabel" type="Label" parent="Panel"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 220.0
+offset_bottom = 56.0
+text = "Level 1"
+
+[node name="UpButton" type="Button" parent="Panel"]
+offset_left = 560.0
+offset_top = 900.0
+offset_right = 640.0
+offset_bottom = 980.0
+text = "↑"
+
+[node name="DownButton" type="Button" parent="Panel"]
+offset_left = 560.0
+offset_top = 1060.0
+offset_right = 640.0
+offset_bottom = 1140.0
+text = "↓"
+
+[node name="LeftButton" type="Button" parent="Panel"]
+offset_left = 480.0
+offset_top = 980.0
+offset_right = 560.0
+offset_bottom = 1060.0
+text = "←"
+
+[node name="RightButton" type="Button" parent="Panel"]
+offset_left = 640.0
+offset_top = 980.0
+offset_right = 720.0
+offset_bottom = 1060.0
+text = "→"
+
+[node name="ResetButton" type="Button" parent="Panel"]
+offset_left = 24.0
+offset_top = 1180.0
+offset_right = 184.0
+offset_bottom = 1248.0
+text = "Reset"

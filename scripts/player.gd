@@ -12,6 +12,7 @@ var is_alive: bool = true
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray: RayCast2D = $RayCast2D
+@onready var hurtbox: Area2D = $Hurtbox
 
 signal player_moved(direction: String)
 signal player_reset(history: Array)
@@ -20,6 +21,8 @@ func _ready():
 	grid_pos = Vector2i(position / TILE_SIZE)
 	target_pos = position
 	update_animation("idle")
+	if hurtbox:
+		hurtbox.area_entered.connect(_on_area_entered)
 
 func _process(delta):
 	if is_moving:
@@ -65,11 +68,11 @@ func try_move(direction: Vector2i, dir_name: String):
 	
 	if ray.is_colliding():
 		var collider = ray.get_collider()
-		if collider.is_in_group("box"):
+		if collider and collider.is_in_group("box"):
 			if try_push_box(collider, direction):
 				execute_move(direction, dir_name)
 			return
-		elif collider.is_in_group("wall"):
+		elif collider and (collider.is_in_group("wall") or collider.is_in_group("door")):
 			return
 	
 	execute_move(direction, dir_name)
