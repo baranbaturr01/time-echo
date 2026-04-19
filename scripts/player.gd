@@ -33,8 +33,8 @@ func _physics_process(delta):
 			is_moving = false
 			grid_pos = Vector2i(position / TILE_SIZE)
 			update_animation("idle")
-			_check_hurtbox_overlaps()
 			GameManager.advance_turn()
+			_check_hurtbox_overlaps()
 	elif is_alive:
 		handle_input()
 
