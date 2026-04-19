@@ -10,6 +10,8 @@ var is_moving: bool = false
 var target_pos: Vector2 = Vector2.ZERO
 var current_direction: String = "down"
 var is_alive: bool = true
+var _processed_area_ids: Dictionary = {}
+var _last_processed_area_frame: int = -1
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray: RayCast2D = $RayCast2D
@@ -35,7 +37,7 @@ func _physics_process(delta: float) -> void:
             position = target_pos
             is_moving = false
             update_animation("idle")
-            _check_hurtbox_overlaps()
+            call_deferred("_check_hurtbox_overlaps")
 
 func _on_turn_advanced(_step: int) -> void:
     if not is_alive or is_moving:
@@ -93,11 +95,24 @@ func die() -> void:
     process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-    if area.is_in_group("laser"):
-        die()
+    _process_area_contact(area)
 
 func _check_hurtbox_overlaps() -> void:
     if not hurtbox:
         return
     for area in hurtbox.get_overlapping_areas():
-        _on_hurtbox_area_entered(area)
+        _process_area_contact(area)
+
+func _process_area_contact(area: Area2D) -> void:
+    if not area:
+        return
+    var frame := Engine.get_physics_frames()
+    if frame != _last_processed_area_frame:
+        _last_processed_area_frame = frame
+        _processed_area_ids.clear()
+    var area_id := area.get_instance_id()
+    if _processed_area_ids.has(area_id):
+        return
+    _processed_area_ids[area_id] = true
+    if area.is_in_group("laser"):
+        die()
