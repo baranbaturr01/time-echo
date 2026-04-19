@@ -1,0 +1,189 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/buttons/PNG/Green/Default/button_rectangle_depth_gloss.png" id="2_play"]
+[ext_resource type="Texture2D" path="res://assets/buttons/PNG/Green/Default/button_rectangle_depth_flat.png" id="3_play_pressed"]
+[ext_resource type="Texture2D" path="res://assets/buttons/PNG/Blue/Default/button_rectangle_depth_gloss.png" id="4_blue"]
+[ext_resource type="Texture2D" path="res://assets/buttons/PNG/Blue/Default/button_rectangle_depth_flat.png" id="5_blue_pressed"]
+[ext_resource type="FontFile" path="res://assets/buttons/Font/Kenney Future.ttf" id="6_font"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101961, 0.101961, 0.180392, 1)
+
+[node name="GridTint" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.35, 0.08)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 120
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="MarginContainer/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 88
+text = "TIME ECHO"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="MarginContainer/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 24
+text = "Collaborate with your past"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBox"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PlayButton" type="TextureButton" parent="MarginContainer/VBox/Buttons"]
+custom_minimum_size = Vector2(0, 76)
+layout_mode = 2
+texture_normal = ExtResource("2_play")
+texture_pressed = ExtResource("3_play_pressed")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/Buttons/PlayButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 28
+text = "▶ Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelSelectButton" type="TextureButton" parent="MarginContainer/VBox/Buttons"]
+custom_minimum_size = Vector2(0, 76)
+layout_mode = 2
+texture_normal = ExtResource("4_blue")
+texture_pressed = ExtResource("5_blue_pressed")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/Buttons/LevelSelectButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 24
+text = "📖 Level Select"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HowToPlayButton" type="TextureButton" parent="MarginContainer/VBox/Buttons"]
+custom_minimum_size = Vector2(0, 76)
+layout_mode = 2
+texture_normal = ExtResource("4_blue")
+texture_pressed = ExtResource("5_blue_pressed")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/Buttons/HowToPlayButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 24
+text = "❓ How to Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="TextureButton" parent="MarginContainer/VBox/Buttons"]
+custom_minimum_size = Vector2(0, 76)
+layout_mode = 2
+texture_normal = ExtResource("4_blue")
+texture_pressed = ExtResource("5_blue_pressed")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBox/Buttons/SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 24
+text = "⚙ Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -42.0
+offset_right = -16.0
+offset_bottom = -12.0
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 16
+text = "v0.1"
+horizontal_alignment = 2
+
+[node name="SettingsNote" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 300.0
+offset_right = 150.0
+offset_bottom = 338.0
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 18
+text = "Settings coming soon"
+horizontal_alignment = 1
