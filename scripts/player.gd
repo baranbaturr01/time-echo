@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
             update_animation("idle")
             _check_exit_overlap()
             GameManager.advance_turn()
-    elif is_alive and not get_tree().paused:
+    elif is_alive and get_tree() and not get_tree().paused:
         handle_input()
 
 func handle_input() -> void:

@@ -4,6 +4,13 @@ const TOTAL_LEVELS: int = 5
 const MAIN_MENU_SCENE := "res://scenes/ui/main_menu.tscn"
 const LEVEL_SELECT_SCENE := "res://scenes/ui/level_select.tscn"
 const TRANSITION_SCENE: PackedScene = preload("res://scenes/ui/transition.tscn")
+const LEVEL_NAMES := {
+    1: "First Steps",
+    2: "Time Split",
+    3: "Weight of the Past",
+    4: "Double Take",
+    5: "Laser Focus",
+}
 
 # Game state
 var current_level: int = 1
@@ -50,7 +57,7 @@ func reset_level() -> void:
     var current_scene := get_tree().current_scene
     if current_scene and current_scene.scene_file_path != "":
         _change_scene(current_scene.scene_file_path)
-    else:
+    elif get_tree():
         get_tree().reload_current_scene()
 
 func advance_turn() -> void:
@@ -94,19 +101,7 @@ func mark_tutorial_seen(tutorial_id: String) -> void:
         tutorials_seen.append(tutorial_id)
 
 func get_level_name(level_num: int = current_level) -> String:
-    match level_num:
-        1:
-            return "First Steps"
-        2:
-            return "Time Split"
-        3:
-            return "Weight of the Past"
-        4:
-            return "Double Take"
-        5:
-            return "Laser Focus"
-        _:
-            return "Unknown"
+    return LEVEL_NAMES.get(level_num, "Unknown")
 
 func go_to_main_menu() -> void:
     get_tree().paused = false

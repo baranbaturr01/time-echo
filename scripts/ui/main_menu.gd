@@ -47,7 +47,8 @@ func _tween_button_scale(button: BaseButton, target: Vector2) -> void:
     tween.tween_property(button, "scale", target, 0.1)
 
 func _on_play_pressed() -> void:
-    var level_to_play := clampi(GameManager.current_level, 1, GameManager.levels_unlocked)
+    var level_to_play := mini(GameManager.current_level, GameManager.levels_unlocked)
+    level_to_play = clampi(level_to_play, 1, GameManager.TOTAL_LEVELS)
     GameManager.go_to_level(level_to_play)
 
 func _on_level_select_pressed() -> void:

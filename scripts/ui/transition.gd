@@ -13,6 +13,7 @@ func change_scene_to_file(path: String, duration: float = 0.25) -> void:
     if _is_transitioning:
         return
     if not ResourceLoader.exists(path):
+        push_warning("Scene path does not exist: " + path)
         return
     await fade_to_black(duration)
     get_tree().paused = false
