@@ -15,6 +15,7 @@ var levels_unlocked: int = 1
 var levels_completed: Array = []
 var tutorials_seen: Array = []
 var total_moves: int = 0
+var last_completed_level: int = 0
 
 # Signals
 signal echo_spawned(echo)
@@ -67,12 +68,13 @@ func complete_level() -> void:
     _completing_level = true
 
     var completed_level := current_level
+    last_completed_level = completed_level
     if completed_level not in levels_completed:
         levels_completed.append(completed_level)
 
     current_level += 1
     if current_level > levels_unlocked:
-        levels_unlocked = min(current_level, TOTAL_LEVELS)
+        levels_unlocked = clampi(current_level, 1, TOTAL_LEVELS)
 
     emit_signal("level_completed")
     emit_signal("game_state_changed")

@@ -19,9 +19,12 @@ func set_message(message: String) -> void:
         message_label.text = message
 
 func _gui_input(event: InputEvent) -> void:
-    if event is InputEventMouseButton and event.pressed:
+    if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
         _dismiss()
     elif event is InputEventKey and event.pressed:
+        if event.keycode == KEY_ENTER or event.keycode == KEY_KP_ENTER or event.keycode == KEY_SPACE or event.keycode == KEY_ESCAPE:
+            _dismiss()
+    elif event.is_action_pressed("ui_accept"):
         _dismiss()
 
 func _dismiss() -> void:

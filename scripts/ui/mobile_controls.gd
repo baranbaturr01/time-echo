@@ -63,9 +63,7 @@ func _toggle_pause_menu() -> void:
     get_tree().paused = true
 
 func _update_hud() -> void:
-    var level_for_display := GameManager.current_level
-    if GameManager.current_level > GameManager.TOTAL_LEVELS:
-        level_for_display = GameManager.TOTAL_LEVELS
+    var level_for_display := clampi(GameManager.current_level, 1, GameManager.TOTAL_LEVELS)
     level_label.text = "Level %d: %s" % [level_for_display, GameManager.get_level_name(level_for_display)]
     move_label.text = "Moves: %d" % GameManager.total_moves
     echo_label.text = "Echoes: %d/%d" % [GameManager.echo_count, GameManager.max_echoes]

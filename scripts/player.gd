@@ -100,8 +100,6 @@ func _is_blocking_collider(collider: Variant) -> bool:
     return false
 
 func do_reset() -> void:
-    if not is_alive:
-        return
     if GameManager.can_spawn_echo():
         emit_signal("player_reset", move_history.duplicate())
         move_history.clear()

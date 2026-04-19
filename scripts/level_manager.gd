@@ -138,7 +138,9 @@ func _on_level_completed() -> void:
     if LEVEL_COMPLETE_SCENE == null:
         return
 
-    var completed_level := maxi(GameManager.current_level - 1, 1)
+    var completed_level := GameManager.last_completed_level
+    if completed_level < 1:
+        completed_level = maxi(GameManager.current_level - 1, 1)
     var panel := LEVEL_COMPLETE_SCENE.instantiate()
     add_child(panel)
     if panel.has_method("setup"):
