@@ -92,6 +92,33 @@ func complete_level() -> void:
 func register_echo() -> void:
     echo_count += 1
     emit_signal("game_state_changed")
+func _ready():
+	pass
+
+func reset_level():
+	is_resetting = true
+	echo_count = 0
+	turn_step = 0
+	emit_signal("level_reset")
+	get_tree().reload_current_scene()
+
+func advance_turn():
+	turn_step += 1
+	emit_signal("turn_advanced", turn_step)
+
+func complete_level():
+	emit_signal("level_completed")
+	current_level += 1
+	# Load next level
+	var next_level_path = "res://scenes/levels/level_" + str(current_level) + ".tscn"
+	print("Completing level. Loading: ", next_level_path)
+	if ResourceLoader.exists(next_level_path):
+		get_tree().change_scene_to_file(next_level_path)
+	else:
+		print("Game Complete! No more levels.")
+
+func register_echo():
+	echo_count += 1
 
 func can_spawn_echo() -> bool:
     return echo_count < max_echoes
