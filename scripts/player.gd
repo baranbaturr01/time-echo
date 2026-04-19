@@ -10,6 +10,8 @@ var is_moving: bool = false
 var move_history: Array = []
 var current_direction: String = "down"
 var is_alive: bool = true
+var _processed_area_ids: Dictionary = {}
+var _last_processed_area_frame: int = -1
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray: RayCast2D = $RayCast2D
@@ -25,7 +27,7 @@ func _ready():
 	if hurtbox:
 		hurtbox.area_entered.connect(_on_area_entered)
 
-func _process(delta):
+func _physics_process(delta):
 	if is_moving:
 		position = position.move_toward(target_pos, MOVE_SPEED * delta)
 		if position.distance_to(target_pos) < 1.0:
@@ -34,6 +36,7 @@ func _process(delta):
 			grid_pos = Vector2i(position / TILE_SIZE)
 			update_animation("idle")
 			GameManager.advance_turn()
+			call_deferred("_check_hurtbox_overlaps")
 	elif is_alive:
 		handle_input()
 
@@ -122,7 +125,26 @@ func die():
 		get_tree().current_scene.add_child(effect)
 	visible = false
 
-func _on_area_entered(area):
+func _on_area_entered(area: Area2D) -> void:
+	_process_area_contact(area)
+
+func _check_hurtbox_overlaps() -> void:
+	if not hurtbox:
+		return
+	for area in hurtbox.get_overlapping_areas():
+		_process_area_contact(area)
+
+func _process_area_contact(area: Area2D) -> void:
+	if not area:
+		return
+	var frame := Engine.get_physics_frames()
+	if frame != _last_processed_area_frame:
+		_last_processed_area_frame = frame
+		_processed_area_ids.clear()
+	var area_id := area.get_instance_id()
+	if _processed_area_ids.has(area_id):
+		return
+	_processed_area_ids[area_id] = true
 	if area.is_in_group("exit"):
 		GameManager.complete_level()
 	elif area.is_in_group("laser"):
