@@ -30,5 +30,5 @@ func _dismiss() -> void:
     if not is_inside_tree():
         return
     get_tree().paused = false
-    emit_signal("dismissed")
+    dismissed.emit()
     queue_free()

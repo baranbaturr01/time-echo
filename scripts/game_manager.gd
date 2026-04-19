@@ -49,6 +49,7 @@ func _ensure_transition() -> void:
         get_tree().root.call_deferred("add_child", _transition)
 
 func reset_level() -> void:
+    var tree := get_tree()
     is_resetting = true
     echo_count = 0
     turn_step = 0
@@ -56,11 +57,11 @@ func reset_level() -> void:
     _completing_level = false
     emit_signal("level_reset")
     emit_signal("game_state_changed")
-    var current_scene := get_tree().current_scene
+    var current_scene := tree.current_scene
     if current_scene and current_scene.scene_file_path != "":
         _change_scene(current_scene.scene_file_path)
-    elif get_tree():
-        get_tree().reload_current_scene()
+    else:
+        tree.reload_current_scene()
 
 func advance_turn() -> void:
     turn_step += 1

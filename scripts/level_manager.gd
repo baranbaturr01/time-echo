@@ -191,9 +191,9 @@ func _show_tutorial_once(tutorial_id: String, message: String) -> void:
         GameManager.mark_tutorial_seen(tutorial_id)
         return
 
-    var popup := TUTORIAL_POPUP_SCENE.instantiate() as Node
+    var popup := TUTORIAL_POPUP_SCENE.instantiate()
     add_child(popup)
     if popup.has_method("set_message"):
         popup.call("set_message", message)
     if popup.has_signal("dismissed"):
-        popup.connect("dismissed", func(): GameManager.mark_tutorial_seen(tutorial_id), CONNECT_ONE_SHOT)
+        popup.dismissed.connect(func(): GameManager.mark_tutorial_seen(tutorial_id), CONNECT_ONE_SHOT)
