@@ -32,6 +32,7 @@ func complete_level():
 	current_level += 1
 	# Load next level
 	var next_level_path = "res://scenes/levels/level_" + str(current_level) + ".tscn"
+	print("Completing level. Loading: ", next_level_path)
 	if ResourceLoader.exists(next_level_path):
 		get_tree().change_scene_to_file(next_level_path)
 	else:

@@ -12,7 +12,7 @@ func _ready() -> void:
     add_to_group("box")
     target_pos = position
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
     if not is_moving:
         return
 

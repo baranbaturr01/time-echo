@@ -28,13 +28,14 @@ func _exit_tree() -> void:
     if GameManager.turn_advanced.is_connected(_on_turn_advanced):
         GameManager.turn_advanced.disconnect(_on_turn_advanced)
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
     if is_moving:
         position = position.move_toward(target_pos, MOVE_SPEED * delta)
         if position.distance_to(target_pos) < 1.0:
             position = target_pos
             is_moving = false
             update_animation("idle")
+            _check_hurtbox_overlaps()
 
 func _on_turn_advanced(_step: int) -> void:
     if not is_alive or is_moving:
@@ -94,3 +95,9 @@ func die() -> void:
 func _on_hurtbox_area_entered(area: Area2D) -> void:
     if area.is_in_group("laser"):
         die()
+
+func _check_hurtbox_overlaps() -> void:
+    if not hurtbox:
+        return
+    for area in hurtbox.get_overlapping_areas():
+        _on_hurtbox_area_entered(area)

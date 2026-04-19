@@ -25,7 +25,7 @@ func _ready():
 	if hurtbox:
 		hurtbox.area_entered.connect(_on_area_entered)
 
-func _process(delta):
+func _physics_process(delta):
 	if is_moving:
 		position = position.move_toward(target_pos, MOVE_SPEED * delta)
 		if position.distance_to(target_pos) < 1.0:
@@ -33,6 +33,7 @@ func _process(delta):
 			is_moving = false
 			grid_pos = Vector2i(position / TILE_SIZE)
 			update_animation("idle")
+			_check_hurtbox_overlaps()
 			GameManager.advance_turn()
 	elif is_alive:
 		handle_input()
@@ -127,3 +128,9 @@ func _on_area_entered(area):
 		GameManager.complete_level()
 	elif area.is_in_group("laser"):
 		die()
+
+func _check_hurtbox_overlaps() -> void:
+	if not hurtbox:
+		return
+	for area in hurtbox.get_overlapping_areas():
+		_on_area_entered(area)
