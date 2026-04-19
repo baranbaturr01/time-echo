@@ -20,8 +20,10 @@ func set_message(message: String) -> void:
 
 func _gui_input(event: InputEvent) -> void:
     if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+        accept_event()
         _dismiss()
     elif event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_cancel"):
+        accept_event()
         _dismiss()
 
 func _dismiss() -> void:

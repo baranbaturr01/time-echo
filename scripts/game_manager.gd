@@ -35,6 +35,8 @@ var _transition: CanvasLayer
 var _completing_level: bool = false
 
 func _ready() -> void:
+    if LEVEL_NAMES.size() != TOTAL_LEVELS:
+        push_warning("LEVEL_NAMES count does not match TOTAL_LEVELS.")
     _ensure_transition()
 
 func _ensure_transition() -> void:
